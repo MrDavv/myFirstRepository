@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    这是一个模板文件<br>
+    当前时间:<%=time%><br>
+    你的名字:<%=name%><br>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>姓名</td>
+                <td>年龄</td>
+                <td>分数</td>
+            </tr>
+        </thead>
+
+        <tbody>
+        <%
+            for(var i=0;i<stuList.length;i++)
+            {
+                if(i%2===0)
+                {
+        %>
+                    <tr style="background-color: red">
+                        <td><%=stuList[i].stuname%></td>
+                        <td><%=stuList[i].age%></td>
+                        <td><%=stuList[i].score%></td>
+                    </tr>
+        <%
+                }
+                else
+                {
+        %>
+                    <tr style="background-color: greenyellow">
+                        <td><%=stuList[i].stuname%></td>
+                        <td><%=stuList[i].age%></td>
+                        <td><%=stuList[i].score%></td>
+                    </tr>
+        <%
+                }
+            }
+        %>
+
+        </tbody>
+    </table>
+</body>
+</html>

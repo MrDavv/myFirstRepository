@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>get发送键值对的字符串</title>
+</head>
+<body>
+
+    <div>
+        用户名：<input type="text" name="username" id="nameTxt"><br>
+        密 码：<input type="password" name="pwd" id="pwdTxt"><br>
+        确认密码<input type="password" name="pwd" id="pwd2Txt"><br>
+
+        <button onclick="regUser()">注册</button><br>
+        <table>
+            <thead>
+                <tr>
+                    <td>人数</td>
+                    <td>用户名</td>
+                    <td>密码</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function regUser(){
+            var nameTxt=document.getElementById("nameTxt");
+            var pwdTxt=document.getElementById("pwdTxt");
+            var pwd2Txt=document.getElementById("pwd2Txt");
+
+            var tbody = document.querySelector("tbody");
+            var user = new Object();
+            user.username = nameTxt.value;
+            user.pwd = pwdTxt.value;
+            user.pwd2 = pwd2Txt.value;
+            var userJSON = JSON.stringify(user);
+            //1.创建xmlhttprequest对象
+            var xhr = new XMLHttpRequest();
+//            var data = "username="+nameTxt.value+"&pwd="+pwdTxt.value+
+//                    "&pwd2="+pwd2Txt.value;
+
+            //2.使用xhr.open打开与服务器连接
+            xhr.open("post","/reg1",true);
+            //设置头部文件
+            xhr.setRequestHeader("Content-type","application/json");
+            //3.指定接收响应的回调函数
+
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState===4&&xhr.status===200)
+                {
+                    alert(xhr.readyState);
+                    console.log(xhr.responseText);
+                    var objList = JSON.parse(xhr.responseText);
+                    console.log(objList);
+                    //删除老数据
+                    tbody.innerHTML = "";
+                    objList.forEach(function(user,index){
+                        var tr = document.createElement("tr");
+                        var td1 = document.createElement("td");
+                        td1.innerHTML = ""+index;
+                        var td2 = document.createElement("td");
+                        td2.innerHTML = user.username;
+                        var td3 = document.createElement("td");
+                        td3.innerHTML = user.pwd;
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        tr.appendChild(td3);
+                        tbody.appendChild(tr);
+                    })
+                }
+            };
+            //4.发送
+            xhr.send(userJSON);
+        }
+    </script>
+
+</body>
+</html>

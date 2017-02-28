@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "ejs": "^2.5.6",
+    "express": "^4.14.1",
+    "formidable": "^1.1.1"
+  },
+  "name": "myexpress",
+  "version": "1.0.0",
+  "description": "this is my first",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express"
+  ],
+  "author": "wangwei",
+  "license": "ISC"
+}

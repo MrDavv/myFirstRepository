@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/dateformat.js"></script>
+</head>
+<body>
+    <div>
+        <button onclick="getServerTime()">Go</button>
+        服务端时间是：<span></span>
+    </div>
+    <script>
+        function getServerTime(){
+            var span = document.querySelector("span");
+            var xhr = new XMLHttpRequest();
+            xhr.open("get","http://localhost:3003/getTime",true);
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState==4 && xhr.status==200)
+                {
+                    var json = xhr.responseText;
+                    var jsonObj = JSON.parse(json);
+                    var time = jsonObj.time;
+                    console.log(time);
+                    span.innerHTML = new Date(time).format("yyyy-MM-dd hh:mm:ss");
+                }
+            };
+            xhr.send();
+        }
+
+    </script>
+
+</body>
+</html>

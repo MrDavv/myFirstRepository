@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/dateformat.js"></script>
+</head>
+<body>
+    <div>
+        <button onclick="getTime()">Go</button>
+        服务端的时间是：<span></span>
+    </div>
+    <script>
+        function showTime(time)
+        {
+            var newTime = new Date(time);
+            var span = document.querySelector("span");
+            span.innerHTML = newTime.format("yyyy-MM-dd hh:mm:ss");
+        }
+    </script>
+    <script src="http://localhost:3004/jsonp?callback=showTime">
+
+    </script>
+</body>
+</html>
